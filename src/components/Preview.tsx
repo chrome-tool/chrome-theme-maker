@@ -208,7 +208,7 @@ export default function Preview() {
         </div>
 
         <div
-          className="relative min-h-[820px] overflow-hidden"
+          className="relative min-h-[640px] overflow-hidden"
           style={{
             background: ntpBackground,
             backgroundSize: themeImage ? "cover, cover, auto" : "cover, auto",
