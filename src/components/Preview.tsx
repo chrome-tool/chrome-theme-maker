@@ -60,7 +60,7 @@ export default function Preview() {
 
       <div className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.16)]">
         <div
-          className="relative overflow-hidden border-b border-black/10 px-4 pb-0 pt-4"
+          className="border-b border-black/10 px-4 pt-3"
           style={{
             background: frameBackground,
             backgroundSize: themeImage ? "cover, cover, auto" : "cover, auto",
@@ -68,17 +68,7 @@ export default function Preview() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          {themeImage && (
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0)_44%,rgba(0,0,0,0.08))]" />
-          )}
-
-          <div className="relative mb-4 h-8">
-            <div className="absolute left-0 top-0 text-xs font-medium text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
-              Theme preview
-            </div>
-          </div>
-
-          <div className="relative flex items-end gap-2 overflow-x-auto">
+          <div className="flex items-end gap-2 overflow-x-auto">
             {TABS.map((tab) => {
               const isActive = tab.id === activeTab;
 
@@ -89,14 +79,8 @@ export default function Preview() {
                   onClick={() => setActiveTab(tab.id)}
                   className="flex min-w-[148px] items-center justify-between rounded-t-[18px] px-4 py-3 text-left transition"
                   style={{
-                    background: isActive
-                      ? toolbarColor
-                      : themeImage
-                        ? "rgba(255,255,255,0.04)"
-                        : "rgba(255,255,255,0.1)",
+                    background: isActive ? toolbarColor : "rgba(255,255,255,0.1)",
                     color: isActive ? tabTextColor : inactiveTabTextColor,
-                    backdropFilter: isActive ? undefined : "blur(6px)",
-                    boxShadow: isActive ? "0 -1px 0 rgba(255,255,255,0.08) inset" : undefined,
                   }}
                 >
                   <span className="truncate text-sm font-medium">{tab.label}</span>
