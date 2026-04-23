@@ -26,7 +26,7 @@ export default function App() {
                 Chrome Theme Studio
               </p>
               <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">
-                Build a cleaner Chrome preview
+                Make your Chrome theme
               </h1>
               <p className="mt-1 text-sm text-slate-500">
                 Tune colors on the left and see them land on the correct browser surfaces on the right.

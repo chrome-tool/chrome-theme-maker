@@ -1,23 +1,14 @@
 import { useState } from "react";
 import { useThemeStore } from "../store";
-import { rgbToString } from "../utils/color";const TABS = [
-    { id: "tab1", label: "VSCode", accent: "#79d14b" },
-  { id: "tab2", label: "localhost", accent: "#e4d45e" },
-  { id: "tab3", label: "chrome-theme-maker", accent: "#9f7aea" },
-  { id: "tab4", label: "Extensions", accent: "#1f2937" },
-  { id: "tab5", label: "New Tab", accent: "#1f2937" },
+import { rgbToString } from "../utils/color";
+
+const TABS = [
+  { id: "tab1", label: "New Tab", accent: "#79d14b" },
+  { id: "tab2", label: "New Tab", accent: "#e4d45e" },
+  { id: "tab3", label: "New Tab", accent: "#1f2937" },
 ] as const;
 
-const BOOKMARKS = [
-  "Apps",
-  "localhost",
-  "bilibili.com",
-  "google.com",
-  "ChatAI",
-  "AI",
-  "Tool",
-  "Games",
-];
+const BOOKMARKS = [];
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -45,7 +36,7 @@ function ToolbarButton({
 
 export default function Preview() {
   const { config } = useThemeStore();
-  const [activeTab, setActiveTab] = useState<TabId>("tab5");
+  const [activeTab, setActiveTab] = useState<TabId>("tab1");
 
   const frameColor = rgbToString(config.colors.frame);
   const toolbarColor = rgbToString(config.colors.toolbar);
@@ -58,9 +49,7 @@ export default function Preview() {
   const ntpBgColor = rgbToString(config.colors.ntp_background);
   const themeImage = config.images.theme_frame?.url;
 
-  const frameBackground = themeImage
-    ? `linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04)), url(${themeImage}), ${frameColor}`
-    : `linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)), ${frameColor}`;
+  const frameBackground = `linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)), ${frameColor}`;
 
   const ntpBackground = themeImage
     ? `linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.18)), url(${themeImage}), ${ntpBgColor}`
@@ -86,7 +75,7 @@ export default function Preview() {
           }}
         >
           <div className="flex items-center justify-between px-3 pt-2">
-            <div className="flex min-w-0 items-end gap-1 overflow-hidden pr-3">
+            <div className="flex min-w-0 items-end gap-1 overflow-hidden pr-3 ">
               <button
                 type="button"
                 className="mb-2 ml-1 flex h-10 w-10 items-center justify-center rounded-2xl text-lg font-semibold text-slate-800 transition hover:bg-black/5"
@@ -105,7 +94,9 @@ export default function Preview() {
                     onClick={() => setActiveTab(tab.id)}
                     className="group relative flex h-12 min-w-[156px] items-center gap-3 rounded-t-[18px] px-4 text-left transition"
                     style={{
-                      background: isActive ? toolbarColor : "rgba(255,255,255,0.08)",
+                      background: isActive
+                        ? toolbarColor
+                        : "rgba(255,255,255,0.08)",
                       color: isActive ? tabTextColor : inactiveTabTextColor,
                     }}
                   >
@@ -137,7 +128,7 @@ export default function Preview() {
                 -
               </button>
               <button className="flex h-11 w-11 items-center justify-center text-white/90 transition hover:bg-white/10">
-                o
+                []
               </button>
               <button className="flex h-11 w-11 items-center justify-center text-white/90 transition hover:bg-[#e81123]">
                 x
@@ -152,8 +143,8 @@ export default function Preview() {
         >
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <ToolbarButton label="<" color={toolbarIconColor} />
-              <ToolbarButton label=">" color={toolbarIconColor} />
+              <ToolbarButton label="←" color={toolbarIconColor} />
+              <ToolbarButton label="→" color={toolbarIconColor} />
               <ToolbarButton label="R" color={toolbarIconColor} />
               <ToolbarButton label="H" color={toolbarIconColor} />
             </div>
@@ -169,19 +160,19 @@ export default function Preview() {
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-xl text-[#ea4335]">
                 G
               </div>
-              <span className="truncate text-sm font-medium">localhost</span>
+              <span className="truncate text-sm font-medium">
+                Search Google or type a URL
+              </span>
               <div className="ml-auto flex items-center gap-2">
-                <div className="rounded-full bg-black/8 px-4 py-1.5 text-sm font-medium">AI Mode</div>
+                <div className="rounded-full bg-black/8 px-4 py-1.5 text-sm font-medium"></div>
                 <span className="text-base">Q</span>
               </div>
             </div>
 
             <div className="hidden items-center gap-1 xl:flex">
-              <ToolbarButton label="@" color={toolbarIconColor} />
-              <ToolbarButton label="AI" color={toolbarIconColor} wide />
-              <ToolbarButton label="[]" color={toolbarIconColor} />
-              <ToolbarButton label="D" color={toolbarIconColor} />
-              <ToolbarButton label="..." color={toolbarIconColor} />
+              <ToolbarButton label="[  ]" color={toolbarIconColor} />
+              <ToolbarButton label="↓" color={toolbarIconColor} />
+              <ToolbarButton label=":" color={toolbarIconColor} />
             </div>
           </div>
         </div>
@@ -212,7 +203,9 @@ export default function Preview() {
           style={{
             background: ntpBackground,
             backgroundSize: themeImage ? "cover, cover, auto" : "cover, auto",
-            backgroundPosition: themeImage ? "center center, center center, center" : "center top, center",
+            backgroundPosition: themeImage
+              ? "center center, center center, center"
+              : "center top, center",
             backgroundRepeat: "no-repeat",
           }}
         >
@@ -223,8 +216,12 @@ export default function Preview() {
           <div className="absolute right-5 top-5 flex items-center gap-4 text-sm text-white/90">
             <span>Gmail</span>
             <span>Images</span>
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-black/20 text-xs">::</span>
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/30 font-medium">S</span>
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-black/20 text-xs">
+              ::
+            </span>
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/30 font-medium">
+              S
+            </span>
           </div>
 
           <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pt-28 text-center">
@@ -240,10 +237,9 @@ export default function Preview() {
               }}
             >
               <span className="text-lg opacity-70">Q</span>
-              <span className="flex-1 text-left text-[15px]">Search Google or type a URL</span>
-              <span className="text-base opacity-70">M</span>
-              <span className="text-base opacity-70">C</span>
-              <div className="rounded-full bg-black/10 px-4 py-1.5 text-sm font-medium">AI Mode</div>
+              <span className="flex-1 text-left text-[15px]">
+                Search Google or type a URL
+              </span>
             </div>
 
             <div className="mt-10 flex flex-col items-center text-white">
@@ -252,20 +248,6 @@ export default function Preview() {
               </div>
               <span className="mt-3 text-sm text-white/90">Add shortcut</span>
             </div>
-          </div>
-" />
-                <span className="text-xs text-gray-600 dark:text-gray-400">
-                  No Frame Image
-                </span>
-              </div>
-            )}
-          </div>
-00" />
-                <span className="text-xs text-gray-600 dark:text-gray-400">
-                  No Frame Image
-                </span>
-              </div>
-            )}
           </div>
         </div>
       </div>
