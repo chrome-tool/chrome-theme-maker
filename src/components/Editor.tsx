@@ -4,6 +4,7 @@ import { useThemeStore } from "../store";
 import { validateImageFile } from "../utils/validation";
 import Presets from "./Presets";
 import ColorPickerInput from "./ColorPickerInput";
+import ColorExtractor from "./ColorExtractor";
 
 const COLOR_CATEGORIES = [
   {
@@ -162,6 +163,14 @@ export default function Editor() {
               >
                 Remove Image
               </button>
+              
+              {/* 颜色提取器 */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
+                <ColorExtractor 
+                  imageUrl={config.images.theme_frame.url}
+                  onColorSelect={(color) => setColor('frame', color)}
+                />
+              </div>
             </div>
           )}
         </div>
