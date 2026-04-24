@@ -65,7 +65,7 @@ export default function App() {
           </div>
         </main>
       </div>
-      <div className="flex just-center item-center w-full min-h-[200px]">
+      <div className="mx-auto text-center w-full min-h-[200px]">
         <ins
           className="adsbygoogle"
           style={{ display: "block" }}
