@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useThemeStore } from "../store";
 import { rgbToString } from "../utils/color";
+import googleLogo from "../assets/google_logo.svg";
 
 const TABS = [
   { id: "tab1", label: "New Tab", accent: "#79d14b" },
@@ -51,9 +52,9 @@ export default function Preview() {
 
   const frameBackground = `linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)), ${frameColor}`;
 
-  const ntpBackground = themeImage
-    ? `linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.18)), url(${themeImage}), ${ntpBgColor}`
-    : `radial-gradient(circle at top, rgba(255,255,255,0.18), rgba(255,255,255,0) 34%), ${ntpBgColor}`;
+  const ntpBackgroundImage = themeImage
+    ? `linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.18)), url(${themeImage})`
+    : `radial-gradient(circle at top, rgba(255,255,255,0.18), rgba(255,255,255,0) 34%)`;
 
   return (
     <div className="space-y-6">
@@ -201,7 +202,7 @@ export default function Preview() {
         <div
           className="relative min-h-[640px] overflow-hidden"
           style={{
-            background: ntpBackground,
+            backgroundImage: ntpBackgroundImage,
             backgroundSize: themeImage ? "cover, cover, auto" : "cover, auto",
             backgroundPosition: themeImage
               ? "center center, center center, center"
@@ -213,20 +214,9 @@ export default function Preview() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_40%_70%,rgba(255,255,255,0.07),transparent_20%)]" />
           )}
 
-          <div className="absolute right-5 top-5 flex items-center gap-4 text-sm text-white/90">
-            <span>Gmail</span>
-            <span>Images</span>
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-black/20 text-xs">
-              ::
-            </span>
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/30 font-medium">
-              S
-            </span>
-          </div>
-
           <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pt-28 text-center">
-            <div className="text-[80px] font-medium tracking-tight text-white drop-shadow-[0_6px_20px_rgba(0,0,0,0.35)]">
-              Google
+            <div className="text-[80px] font-medium tracking-tight text-black drop-shadow-[0_6px_20px_rgba(0,0,0,0.35)]">
+              <img className="h-20 w-60" src={googleLogo} />
             </div>
 
             <div
@@ -240,13 +230,6 @@ export default function Preview() {
               <span className="flex-1 text-left text-[15px]">
                 Search Google or type a URL
               </span>
-            </div>
-
-            <div className="mt-10 flex flex-col items-center text-white">
-              <div className="grid h-16 w-16 place-items-center rounded-full bg-black/50 text-4xl shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                +
-              </div>
-              <span className="mt-3 text-sm text-white/90">Add shortcut</span>
             </div>
           </div>
         </div>
