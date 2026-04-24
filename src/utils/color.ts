@@ -19,6 +19,37 @@ export function rgbToString(arr: RGB): string {
 }
 
 /**
+ * Converts RGB array to hexadecimal color string
+ * @param arr RGB tuple
+ * @returns Hex color string (e.g., "#FF0000")
+ * @example
+ * rgbToHex([255, 0, 0]) => "#FF0000"
+ */
+export function rgbToHex(arr: RGB): string {
+  const [r, g, b] = arr;
+  return `#${[r, g, b].map(x => {
+    const hex = x.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  }).join('')}`.toUpperCase();
+}
+
+/**
+ * Converts hexadecimal color string to RGB array
+ * @param hex Hex color string (e.g., "#FF0000" or "FF0000")
+ * @returns RGB tuple or null if invalid
+ * @example
+ * hexToRgb("#FF0000") => [255, 0, 0]
+ */
+export function hexToRgb(hex: string): [number, number, number] | null {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? [
+    parseInt(result[1], 16),
+    parseInt(result[2], 16),
+    parseInt(result[3], 16),
+  ] : null;
+}
+
+/**
  * Validates RGB color values
  * @param arr RGB tuple to validate
  * @returns true if valid RGB color

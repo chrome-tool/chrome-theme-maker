@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { ChromePicker } from "react-color";
-import type { ColorResult } from "react-color";
 
 import { useThemeStore } from "../store";
 import { validateImageFile } from "../utils/validation";
 import Presets from "./Presets";
+import ColorPickerInput from "./ColorPickerInput";
 
 const COLOR_CATEGORIES = [
   {
@@ -222,35 +221,11 @@ export default function Editor() {
               {/* 颜色选择器 */}
               {expandedColor === category.id && (
                 <div className="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-                  <div className="flex justify-center">
-                    <ChromePicker
-                      color={{
-                        r: config.colors[category.key][0],
-                        g: config.colors[category.key][1],
-                        b: config.colors[category.key][2],
-                        a:
-                          config.colors[category.key][3] ||
-                          1,
-                      }}
-                      onChange={(c: ColorResult) =>
-                        setColor(category.key, [
-                          c.rgb.r,
-                          c.rgb.g,
-                          c.rgb.b,
-                          c.rgb.a,
-                        ])
-                      }
-                      disableAlpha={false}
-                    />
-                  </div>
-
-                  {/* RGB 值显示 */}
-                  <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded text-xs font-mono text-gray-700 dark:text-gray-300 break-all">
-                    rgb({config.colors[category.key].slice(0, 3).join(', ')}
-                    {config.colors[category.key][3] !== undefined &&
-                      `, ${config.colors[category.key][3]}`}
-                    )
-                  </div>
+                  <ColorPickerInput
+                    color={config.colors[category.key]}
+                    onChange={(color) => setColor(category.key, color)}
+                    label={category.label}
+                  />
                 </div>
               )}
             </div>
