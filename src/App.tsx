@@ -16,8 +16,18 @@ export default function App() {
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:text-slate-900 lg:hidden"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4 7h16M4 12h16M4 17h16" />
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.8}
+                  d="M4 7h16M4 12h16M4 17h16"
+                />
               </svg>
             </button>
 
@@ -29,11 +39,11 @@ export default function App() {
                 Make your Chrome theme
               </h1>
               <p className="mt-1 text-sm text-slate-500">
-                Tune colors on the left and see them land on the correct browser surfaces on the right.
+                Tune colors on the left and see them land on the correct browser
+                surfaces on the right.
               </p>
             </div>
           </div>
-
           <DownloadButton />
         </div>
       </header>
@@ -41,7 +51,9 @@ export default function App() {
       <div className="mx-auto flex w-full max-w-[1600px] gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <aside
           className={`${
-            sidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-[110%] opacity-0 lg:translate-x-0 lg:opacity-100"
+            sidebarOpen
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-[110%] opacity-0 lg:translate-x-0 lg:opacity-100"
           } fixed inset-y-[92px] left-4 z-10 w-[min(92vw,420px)] overflow-y-auto rounded-[28px] border border-white/70 bg-white/88 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.16)] backdrop-blur-xl transition duration-300 lg:sticky lg:top-[104px] lg:h-[calc(100vh-128px)] lg:w-[420px] lg:flex-none lg:translate-x-0 lg:opacity-100`}
         >
           <Editor />
@@ -52,6 +64,17 @@ export default function App() {
             <Preview />
           </div>
         </main>
+      </div>
+      <div className="flex just-center item-center w-full min-h-[200px]">
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-4988552421895566"
+          data-ad-slot="8546929342"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
   );
