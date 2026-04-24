@@ -68,11 +68,9 @@ export default function App() {
       <div className="mx-auto text-center w-full min-h-[200px]">
         <ins
           className="adsbygoogle"
-          style={{ display: "block" }}
+          style={{ display: "inline-block", width: "1150px", height: "250px" }}
           data-ad-client="ca-pub-4988552421895566"
-          data-ad-slot="8546929342"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          data-ad-slot="3046848393"
         ></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
