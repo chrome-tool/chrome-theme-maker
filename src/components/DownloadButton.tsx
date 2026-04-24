@@ -57,7 +57,7 @@ export default function DownloadButton() {
       }
 
       // Create manifest
-      let manifest: Record<string, unknown>;
+      let manifest: Record<string, any>;
       try {
         manifest = {
           manifest_version: MANIFEST_VERSION,

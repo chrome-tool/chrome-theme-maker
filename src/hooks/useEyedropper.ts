@@ -7,7 +7,6 @@ import type { RGB } from '../types/theme';
  */
 export function useEyedropper() {
   const [isActive, setIsActive] = useState(false);
-  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     if (!isActive) return;
@@ -15,8 +14,8 @@ export function useEyedropper() {
     const handleMouseMove = (e: MouseEvent) => {
       const element = document.elementFromPoint(e.clientX, e.clientY);
       if (element) {
-        const style = window.getComputedStyle(element);
-        const bgColor = style.backgroundColor;
+        // const style = window.getComputedStyle(element);
+        // const bgColor = style.backgroundColor;
         
         // Store position for cursor display
         (document as any).eyedropperX = e.clientX;
@@ -85,7 +84,6 @@ export function useEyedropper() {
   return {
     isActive,
     setIsActive,
-    error,
     startEyedropper,
     hasNativeEyedropper: hasNativeEyedropper(),
   };

@@ -1,7 +1,7 @@
 /**
  * Color extraction utility for extracting dominant colors from images
  */
-import type { RGB } from '../types/theme';
+import type { RGB } from "../types/theme";
 
 interface ExtractedColor {
   color: RGB;
@@ -16,19 +16,19 @@ interface ExtractedColor {
  */
 export async function extractColorsFromImage(
   imageUrl: string,
-  count: number = 5
+  count: number = 5,
 ): Promise<ExtractedColor[]> {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    img.crossOrigin = "anonymous";
 
     img.onload = () => {
       try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
         if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
+          reject(new Error("Failed to get canvas context"));
           return;
         }
 
@@ -52,7 +52,7 @@ export async function extractColorsFromImage(
     };
 
     img.onerror = () => {
-      reject(new Error('Failed to load image'));
+      reject(new Error("Failed to load image"));
     };
 
     img.src = imageUrl;
@@ -64,7 +64,7 @@ export async function extractColorsFromImage(
  */
 function extractDominantColors(
   pixelData: Uint8ClampedArray,
-  k: number
+  k: number,
 ): ExtractedColor[] {
   // Sample pixels (every 4th pixel for performance)
   const pixels: number[][] = [];
@@ -131,7 +131,7 @@ function extractDominantColors(
             acc[1] + pixel[1],
             acc[2] + pixel[2],
           ],
-          [0, 0, 0]
+          [0, 0, 0],
         );
 
         centroids[i] = [
@@ -199,7 +199,7 @@ function colorDistance(color1: number[], color2: number[]): number {
  */
 function initializeCentroids(pixels: number[][], k: number): number[][] {
   const centroids = [];
-  const step = Math.floor(pixels.length / k);
+  // const step = Math.floor(pixels.length / k);
 
   for (let i = 0; i < k; i++) {
     const idx = Math.floor(Math.random() * pixels.length);
@@ -226,7 +226,7 @@ export function getContrastRatio(color1: RGB, color2: RGB): number {
  * Calculate relative luminance for WCAG contrast
  */
 function getRelativeLuminance(color: RGB): number {
-  const [r, g, b] = color.slice(0, 3).map((c) => {
+  const [r, g, b] = color.slice(0, 3).map((c: any) => {
     const normalized = c / 255;
     return normalized <= 0.03928
       ? normalized / 12.92
