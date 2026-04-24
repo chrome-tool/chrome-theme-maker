@@ -1,9 +1,8 @@
 name: Release Tag
 on:
-  pull_request:
-    branches:
-      - main
-    types: [closed]
+  push:
+    branches: [main]
+
 jobs:
   build:
     name: Create Release
