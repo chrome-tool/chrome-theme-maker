@@ -44,7 +44,8 @@ export default function DownloadButton() {
           const item = config.images[key as keyof typeof config.images];
 
           if (item?.file) {
-            const filename = `${key}.png`;
+            const exetension = item.file.name.split(".").pop() || "jpg";
+            const filename = `${key}.${exetension}`;
             imgFolder.file(filename, item.file);
             images[key] = `images/${filename}`;
           }
