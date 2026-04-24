@@ -86,9 +86,9 @@ export default function DownloadButton() {
             ntp_logo_alternate: NTP_LOGO_ALTERNATE,
           },
         };
-        if (images["theme_ntp_background"]) {
+        if (images["theme_frame"]) {
           manifest["theme"]["images"] = {
-            theme_ntp_background: images["theme_ntp_background"],
+            theme_ntp_background: images["theme_frame"],
           };
         }
       } catch (err) {

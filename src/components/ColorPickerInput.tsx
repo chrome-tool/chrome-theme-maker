@@ -3,7 +3,6 @@ import { ChromePicker } from "react-color";
 import type { ColorResult } from "react-color";
 import type { RGB } from "../types/theme";
 import { rgbToHex, hexToRgb } from "../utils/color";
-import EyedropperTool from "./EyedropperTool";
 
 interface ColorPickerInputProps {
   color: RGB;
@@ -14,7 +13,6 @@ interface ColorPickerInputProps {
 export default function ColorPickerInput({
   color,
   onChange,
-  label = "Color",
 }: ColorPickerInputProps) {
   const [copied, setCopied] = useState(false);
   const [hexInput, setHexInput] = useState(rgbToHex(color));
@@ -122,18 +120,12 @@ export default function ColorPickerInput({
 
         {/* Color Preview */}
         <div className="grid grid-cols-3 gap-2">
-          <div className="col-span-3 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm overflow-hidden" 
-               style={{
-                 background: `rgb(${color[0]}, ${color[1]}, ${color[2]}`
-               }}>
-          </div>
-        </div>
-
-        {/* Eyedropper Tool */}
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
-          <EyedropperTool 
-            onColorPicked={(pickedColor) => onChange(pickedColor)}
-          />
+          <div
+            className="col-span-3 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 shadow-sm overflow-hidden"
+            style={{
+              background: `rgb(${color[0]}, ${color[1]}, ${color[2]}`,
+            }}
+          ></div>
         </div>
       </div>
     </div>

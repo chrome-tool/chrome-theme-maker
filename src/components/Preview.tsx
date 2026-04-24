@@ -9,8 +9,6 @@ const TABS = [
   { id: "tab3", label: "New Tab", accent: "#1f2937" },
 ] as const;
 
-const BOOKMARKS = [];
-
 type TabId = (typeof TABS)[number]["id"];
 
 function ToolbarButton({
@@ -47,7 +45,7 @@ export default function Preview() {
   const inactiveTabTextColor = rgbToString(config.colors.tab_background_text);
   const omniboxBgColor = rgbToString(config.colors.omnibox_background);
   const omniboxTextColor = rgbToString(config.colors.omnibox_text);
-  const ntpBgColor = rgbToString(config.colors.ntp_background);
+  // const ntpBgColor = rgbToString(config.colors.ntp_background);
   const themeImage = config.images.theme_frame?.url;
 
   const frameBackground = `linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)), ${frameColor}`;
@@ -70,9 +68,6 @@ export default function Preview() {
           className="border-b border-black/10"
           style={{
             background: frameBackground,
-            backgroundSize: themeImage ? "cover, cover, auto" : "cover, auto",
-            backgroundPosition: "center top",
-            backgroundRepeat: "no-repeat",
           }}
         >
           <div className="flex items-center justify-between px-3 pt-2">
@@ -129,7 +124,7 @@ export default function Preview() {
                 -
               </button>
               <button className="flex h-11 w-11 items-center justify-center text-white/90 transition hover:bg-white/10">
-                []
+                □
               </button>
               <button className="flex h-11 w-11 items-center justify-center text-white/90 transition hover:bg-[#e81123]">
                 x
@@ -171,34 +166,11 @@ export default function Preview() {
             </div>
 
             <div className="hidden items-center gap-1 xl:flex">
-              <ToolbarButton label="[  ]" color={toolbarIconColor} />
-              <ToolbarButton label="↓" color={toolbarIconColor} />
-              <ToolbarButton label=":" color={toolbarIconColor} />
+              {"  "}
+              <ToolbarButton label="∷" color={toolbarIconColor} />
             </div>
           </div>
         </div>
-
-        <div
-          className="border-b border-black/10 px-4 py-2"
-          style={{ background: toolbarColor, color: toolbarTextColor }}
-        >
-          <div className="flex items-center gap-3 overflow-hidden text-sm">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <span className="text-lg">::</span>
-              <span className="font-medium">Apps</span>
-            </div>
-
-            {BOOKMARKS.map((item) => (
-              <div
-                key={item}
-                className="whitespace-nowrap rounded-xl border border-black/10 bg-white/50 px-3 py-1"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div
           className="relative min-h-[640px] overflow-hidden"
           style={{
@@ -226,7 +198,9 @@ export default function Preview() {
                 color: omniboxTextColor,
               }}
             >
-              <span className="text-lg opacity-70">Q</span>
+              <span className="text-lg opacity-70">
+                <ToolbarButton label="Q" color={toolbarIconColor} />
+              </span>
               <span className="flex-1 text-left text-[15px]">
                 Search Google or type a URL
               </span>

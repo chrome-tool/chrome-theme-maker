@@ -74,7 +74,7 @@ export default function Editor() {
     
     if (!file) return;
 
-    const result = validateImageFile(file);
+    const result: any = validateImageFile(file);
     if (!result.isValid) {
       setImageError(result.message);
       return;
@@ -168,7 +168,8 @@ export default function Editor() {
               <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
                 <ColorExtractor 
                   imageUrl={config.images.theme_frame.url}
-                  onColorSelect={(color) => setColor('frame', color)}
+                  colorCategories={COLOR_CATEGORIES}
+                  onColorSelect={(colorKey, color) => setColor(colorKey as any, color)}
                 />
               </div>
             </div>
