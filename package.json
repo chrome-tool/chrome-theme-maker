@@ -1,6 +1,7 @@
 {
   "name": "chrome-theme-maker",
-  "private": true,
+  "homepage": "https://chrome-tool.github.io/",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
