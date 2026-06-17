@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - uses: Kesin11/actions-timeline@v1
+      - uses: Kesin11/actions-timeline@v3
       - name: Checkout code
         uses: actions/checkout@v5
       - name: Set current date
