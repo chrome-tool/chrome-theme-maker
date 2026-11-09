@@ -131,7 +131,7 @@ export default function Editor() {
                 Upload image
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                PNG, JPEG, WebP, or GIF (Max 5MB)
+                PNG, JPEG, WebP, or GIF
               </p>
             </div>
             <input

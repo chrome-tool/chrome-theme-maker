@@ -3,7 +3,6 @@
  */
 
 // File upload constraints
-export const FILE_SIZE_LIMIT = 5 * 1024 * 1024; // 5MB
 export const ALLOWED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
 
 // Chrome Theme manifest defaults

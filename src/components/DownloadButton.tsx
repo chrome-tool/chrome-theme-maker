@@ -15,16 +15,23 @@ import { ThemeDownloadError, getErrorMessage } from "../utils/errors";
 
 type DownloadState = "idle" | "loading" | "success" | "error";
 
+const TARGET_HEIGHT = 1080;
+
 async function convertToPng(file: Blob): Promise<Blob> {
-  if (file.type === "image/png") return file;
   const bitmap = await createImageBitmap(file);
   try {
+    // Only downscale; smaller images keep their size to avoid blurring.
+    const needsResize = bitmap.height > TARGET_HEIGHT;
+    if (!needsResize && file.type === "image/png") return file;
+
+    const scale = needsResize ? TARGET_HEIGHT / bitmap.height : 1;
     const canvas = document.createElement("canvas");
-    canvas.width = bitmap.width;
-    canvas.height = bitmap.height;
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("Canvas 2D context unavailable");
-    ctx.drawImage(bitmap, 0, 0);
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
     return await new Promise<Blob>((resolve, reject) =>
       canvas.toBlob(
         (b) => (b ? resolve(b) : reject(new Error("PNG conversion failed"))),
