@@ -1,11 +1,11 @@
 /**
  * File validation utilities
  */
-import { FILE_SIZE_LIMIT, ALLOWED_IMAGE_TYPES } from '../constants';
+import { ALLOWED_IMAGE_TYPES } from '../constants';
 
 export interface FileValidationError {
   isValid: false;
-  code: 'SIZE_TOO_LARGE' | 'INVALID_TYPE' | 'FILE_ERROR';
+  code: 'INVALID_TYPE' | 'FILE_ERROR';
   message: string;
 }
 
@@ -26,15 +26,6 @@ export function validateImageFile(file: File): FileValidationResult {
       isValid: false,
       code: 'INVALID_TYPE',
       message: `Invalid file type. Allowed: ${ALLOWED_IMAGE_TYPES.join(', ')}`,
-    };
-  }
-
-  if (file.size > FILE_SIZE_LIMIT) {
-    const limitMB = FILE_SIZE_LIMIT / (1024 * 1024);
-    return {
-      isValid: false,
-      code: 'SIZE_TOO_LARGE',
-      message: `File size exceeds ${limitMB}MB limit. Size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`,
     };
   }
 
