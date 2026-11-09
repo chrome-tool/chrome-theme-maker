@@ -15,6 +15,27 @@ import { ThemeDownloadError, getErrorMessage } from "../utils/errors";
 
 type DownloadState = "idle" | "loading" | "success" | "error";
 
+async function convertToPng(file: Blob): Promise<Blob> {
+  if (file.type === "image/png") return file;
+  const bitmap = await createImageBitmap(file);
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Canvas 2D context unavailable");
+    ctx.drawImage(bitmap, 0, 0);
+    return await new Promise<Blob>((resolve, reject) =>
+      canvas.toBlob(
+        (b) => (b ? resolve(b) : reject(new Error("PNG conversion failed"))),
+        "image/png",
+      ),
+    );
+  } finally {
+    bitmap.close();
+  }
+}
+
 export default function DownloadButton() {
   const { config } = useThemeStore();
   const [state, setState] = useState<DownloadState>("idle");
@@ -44,9 +65,8 @@ export default function DownloadButton() {
           const item = config.images[key as keyof typeof config.images];
 
           if (item?.file) {
-            const exetension = item.file.name.split(".").pop() || "jpg";
-            const filename = `${key}.${exetension}`;
-            imgFolder.file(filename, item.file);
+            const filename = `${key}.png`;
+            imgFolder.file(filename, await convertToPng(item.file));
             images[key] = `images/${filename}`;
           }
         }

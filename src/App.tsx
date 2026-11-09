@@ -74,6 +74,15 @@ export default function App() {
         ></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
+      <footer className="border-t border-white/70 bg-white/75 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:px-6 lg:px-8">
+          <p>
+            &copy; {new Date().getFullYear()} Chrome Theme Studio. All rights
+            reserved.
+          </p>
+          <p>Not affiliated with Google. Chrome is a trademark of Google LLC.</p>
+        </div>
+      </footer>
     </div>
   );
 }
